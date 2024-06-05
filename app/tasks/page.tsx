@@ -1,7 +1,11 @@
+import { Form } from '@/app/ui/tasks/create-form';
+import { List } from '@/app/ui/tasks/list';
+
 export default function Page() {
   return (
     <div>
-      <h1 className="text-7xl">Tasks</h1>
+      <Form />
+      <List />
     </div>
   );
 }

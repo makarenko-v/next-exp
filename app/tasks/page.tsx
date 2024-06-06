@@ -1,10 +1,9 @@
-import { Form } from '@/app/ui/tasks/create-form';
-import { List } from '@/app/ui/tasks/list';
+import { CreateForm, List } from '@/app/ui/tasks';
 
 export default function Page() {
   return (
-    <div>
-      <Form />
+    <div className="max-w-lg">
+      <CreateForm />
       <List />
     </div>
   );

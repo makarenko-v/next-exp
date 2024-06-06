@@ -1,24 +1,38 @@
 'use client';
 
-import { useFormState } from 'react-dom';
+import { useFormStatus, useFormState } from 'react-dom';
 import { createTask } from '@/app/lib/actions/task';
 
 const initialState = {
   message: '',
 };
 
-export function Form() {
+function Button() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      className="btn btn-primary join-item"
+      type="submit"
+      disabled={pending}
+    >
+      {pending ? 'Pending...' : 'Create Task'}
+    </button>
+  );
+}
+
+export function CreateForm() {
   const [state, dispatch] = useFormState(createTask, initialState);
 
   return (
-    <form className="join" action={dispatch}>
+    <form className="join w-full" action={dispatch}>
       <input
         type="text"
         placeholder="Task..."
-        className="input join-item input-bordered"
+        className="input join-item input-bordered w-full"
         name="content"
       />
-      <button className="btn btn-primary join-item">Create Task</button>
+      <Button />
     </form>
   );
 }

@@ -51,3 +51,14 @@ export interface Drink {
   strCreativeCommonsConfirmed: string;
   dateModified: string;
 }
+
+export const Statuses = {
+  ERROR: 'ERROR',
+  SUCCESS: 'SUCCESS',
+} as const;
+
+export type Status = (typeof Statuses)[keyof typeof Statuses];
+
+export type State = {
+  status: Status | null;
+};

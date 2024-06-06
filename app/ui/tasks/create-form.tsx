@@ -2,9 +2,12 @@
 
 import { useFormStatus, useFormState } from 'react-dom';
 import { createTask } from '@/app/lib/actions/task';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { State, Statuses } from '@/app/lib/types';
 
-const initialState = {
-  message: '',
+const initialState: State = {
+  status: null,
 };
 
 function Button() {
@@ -23,6 +26,16 @@ function Button() {
 
 export function CreateForm() {
   const [state, dispatch] = useFormState(createTask, initialState);
+
+  useEffect(() => {
+    if (state.status === Statuses.ERROR) {
+      toast.error('Something went wrong');
+    }
+
+    if (state.status === Statuses.SUCCESS) {
+      toast.success('Successfully created task');
+    }
+  }, [state]);
 
   return (
     <form className="join w-full" action={dispatch}>
